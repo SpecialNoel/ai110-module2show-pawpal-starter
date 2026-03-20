@@ -13,7 +13,7 @@ owner.add_task_to_pet(pet1, task1)
 owner.add_task_to_pet(pet1, task2)
 owner.add_task_to_pet(pet2, task3)
 
-scheduler = owner.generate_scheduler("John's Pet Care Schedule")
+scheduler = owner.generate_scheduler("John's Pet Care Schedule") # this method generates a Scheduler inside the owner object
 print("Generated Schedule:")
 for task in scheduler.get_schedule():
     print(f"- {task.description} (Priority: {task.priority.value}, Duration: {task.duration} mins, Frequency: {task.frequency.value})")
