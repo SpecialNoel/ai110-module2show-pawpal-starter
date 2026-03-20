@@ -23,6 +23,7 @@ class Pet:
     breed: Optional[str] = None
     health_notes: Optional[str] = None
     owner_name: Optional[str] = None
+    tasks: List[Task] = field(default_factory=list)
 
     def edit_info(self, **kwargs) -> None:
         for key, value in kwargs.items():
@@ -31,6 +32,14 @@ class Pet:
 
     def edit_owner_name(self, new_owner_name: str) -> None:
         self.owner_name = new_owner_name
+
+    def add_task(self, task: Task) -> None:
+        if task not in self.tasks:
+            self.tasks.append(task)
+
+    def remove_task(self, task: Task) -> None:
+        if task in self.tasks:
+            self.tasks.remove(task)
 
 
 @dataclass
