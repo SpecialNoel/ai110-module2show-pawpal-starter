@@ -46,3 +46,8 @@ pip install -r requirements.txt
 
 - Added tasks conflict handling logic
 - Added the logic where a new Task instance will be added to the schedule if the Task is recurring and has completed.
+
+### Testing PawPal+
+- Command: python -m pytest tests/test_pawpal.py
+- The tests cover cases scheduling recurring tasks, task conflicts, filtering scheduler, and sorting by priority or duration.
+- The condidence leve I had for the system's reliability based on the test results is about 4.

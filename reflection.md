@@ -78,7 +78,11 @@
 **a. What you tested**
 
 - What behaviors did you test?
+  * tasks conflict handling
+  * schedule filtering
+  * recurring task scheduling
 - Why were these tests important?
+  * 
 
 **b. Confidence**
 
