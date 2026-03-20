@@ -43,13 +43,17 @@
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+  * The scheduler considers time and priority for now.
 - How did you decide which constraints mattered most?
+  * Time should be mattering the most since the plan simply won't work if the owner has conflicts on time. 
+    Priority comes next as the owner needs a best order to efficiently carry out tasks of their pets.
 
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+  * The scheduler considers only the exact due date rather than the overlapping durations when handling task conflicts.
 - Why is that tradeoff reasonable for this scenario?
-
+  * By sticking with checking only the exact due date, the user will have less complexity on using the app as they don't need to specify start and end time, and it eases the UI on the time input part.
 ---
 
 ## 3. AI Collaboration
@@ -57,6 +61,9 @@
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+  * Design brainstorming: Copilot suggests the following logic improvements to make the app more efficient to users of the app:
+    * Implement the Knapsack algorithm in Scheduler for best ordering Tasks with respect to constaints.
+    * Implement the calendar logic in Scheduler to support recurring tasks scheduling.
 - What kinds of prompts or questions were most helpful?
 
 **b. Judgment and verification**
