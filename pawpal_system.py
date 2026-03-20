@@ -1,10 +1,23 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Optional
+from enum import Enum
+
+class Priority(Enum):
+    LOW = "low"
+    NORMAL = "normal"
+    HIGH = "high"
+
+class Frequency(Enum):
+    ONCE = "once"
+    DAILY = "daily"
+    WEEKLY = "weekly"
+    MONTHLY = "monthly"
 
 @dataclass
 class Pet:
     name: str
+    id: str
     species: str
     age: int
     breed: Optional[str] = None
@@ -24,8 +37,10 @@ class Pet:
 class Task:
     pets: List[Pet] = field(default_factory=list)
     description: str = ""
-    priority: str = "normal"
+    priority: Priority = Priority.NORMAL
     duration: int = 0  # minutes
+    frequency: Frequency = Frequency.ONCE
+    completed: bool = False
 
     def add_pet(self, pet: Pet) -> None:
         if pet not in self.pets:
@@ -38,18 +53,31 @@ class Task:
     def edit_description(self, description: str) -> None:
         self.description = description
 
-    def edit_priority(self, priority: str) -> None:
+    def edit_priority(self, priority: Priority) -> None:
         self.priority = priority
 
     def edit_duration(self, duration: int) -> None:
         self.duration = duration
 
+    def edit_frequency(self, frequency: Frequency) -> None:
+        self.frequency = frequency
+
+    def is_recurring(self) -> bool:
+        return self.frequency != Frequency.ONCE
+        
+    def mark_completed(self) -> None:
+        self.completed = True
+
 
 @dataclass
-class Plan:
+class Scheduler:
+    name: str = None
     tasks: List[Task] = field(default_factory=list)
     schedule: List[Task] = field(default_factory=list)
     explanation: Optional[str] = None
+    
+    def edit_name(self, name: str) -> None:
+        self.name = name
 
     def add_task(self, task: Task) -> None:
         self.tasks.append(task)
@@ -73,9 +101,11 @@ class Plan:
 @dataclass
 class Owner:
     pets: List[Pet] = field(default_factory=list)
-    owner_info: Optional[str] = None
+    name: str = ""
+    email: str = ""
     tasks: List[Task] = field(default_factory=list)
-    plans: List[Plan] = field(default_factory=list)
+    schedulers: List[Scheduler] = field(default_factory=list)
+    available_time: List[str] = None
 
     def add_pet(self, pet: Pet) -> None:
         if pet not in self.pets:
@@ -89,8 +119,11 @@ class Owner:
         if pet in self.pets:
             pet.edit_info(**kwargs)
 
-    def edit_owner_info(self, owner_info: str) -> None:
-        self.owner_info = owner_info
+    def edit_owner_name(self, new_name: str) -> None:
+        self.name = new_name
+        
+    def edit_onwer_email(self, new_email: str) -> None:
+        self.email = new_email
 
     def add_task(self, task: Task) -> None:
         self.tasks.append(task)
@@ -99,14 +132,23 @@ class Owner:
         if task in self.tasks:
             self.tasks.remove(task)
 
-    def generate_plan(self, plan_name: Optional[str] = None) -> Plan:
-        p = Plan(tasks=list(self.tasks))
+    def generate_scheduler(self, scheduler_name: Optional[str] = None) -> Scheduler:
+        p = Scheduler(tasks=list(self.tasks))
         p.generate_schedule()
         p.generate_explanation()
-        self.plans.append(p)
+        self.schedulers.append(p)
         return p
 
-    def remove_plan(self, plan: Plan) -> None:
-        if plan in self.plans:
-            self.plans.remove(plan)
+    def remove_scheduler(self, scheduler: Scheduler) -> None:
+        if scheduler in self.schedulers:
+            self.schedulers.remove(scheduler)
 
+    def add_available_time(self, time_slot: str) -> None:
+        if self.available_time is None:
+            self.available_time = []
+        if time_slot not in self.available_time:
+            self.available_time.append(time_slot)
+    
+    def remove_available_time(self, time_slot: str) -> None:
+        if self.available_time and time_slot in self.available_time:
+            self.available_time.remove(time_slot)

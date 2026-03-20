@@ -22,7 +22,7 @@ classDiagram
         + editDuration(int)
     }
 
-    class Plan {
+    class Scheduler {
         - List~Task~ tasks
         - List~Task~ schedule
         - String explanation
@@ -50,6 +50,6 @@ classDiagram
 
     Owner "1" --> "*" Pet
     Owner "1" --> "*" Task
-    Owner "1" --> "*" Plan
-    Plan "1" --> "*" Task
+    Owner "1" --> "*" Scheduler
+    Scheduler "1" --> "*" Task
     Task "*" --> "*" Pet

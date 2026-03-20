@@ -5,21 +5,22 @@
 ### Core actions:
 - User should be able to add/edit/remove/check tasks (walks, feeding, meds, enrichment, grooming, etc.)
 - User should be able to add/edit information about a pet, as well as information about the owner
-- User shoudl be able to request a daily plan that suits the user the best considering constraints and priorities, supported with explanation on why the plan works the best.
+- User shoudl be able to request a daily scheduler that suits the user the best considering constraints and priorities, supported with explanation on why the scheduler works the best.
 
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+  * The user should essentially be an Owner object, which can have lots of Pets and individual Tasks. The user can generate and save Schedulers based on the Tasks they choose as well as their constraints and priority.
 - What classes did you include, and what responsibilities did you assign to each?
   * Task:
     * Attributes: a list of Pet, description about the task, priority flag, duration.
     * Methods: add/edit/remove a Pet, edit the description, priority flag and duration.
-  * Plan
-    * Attributes: a list of Task, the generated schedule, explanation for this plan.
+  * Scheduler
+    * Attributes: a list of Task, the generated schedule, explanation for this scheduler.
     * Methods: add/delete a Task, generate the schedule, generate and edit the explanation.
   * Owner
-    * Attributes: a list of Pet, information about the owner, a list of Tasks, a list of Plans.
-    * Methods: add/edit/remove a Pet, edit owner info, add/remove a Task, generate/remove a Plan.
+    * Attributes: a list of Pet, information about the owner, a list of Tasks, a list of Schedulers.
+    * Methods: add/edit/remove a Pet, edit owner info, add/remove a Task, generate/remove a Scheduler.
   * Pet
     * Attributes: information about the pet, name of its owner.
     * Methods: edit info about the pet, edit info about the name of its owner.
@@ -27,7 +28,13 @@
 **b. Design changes**
 
 - Did your design change during implementation?
+  * Yes, I did change the design of the very first skeleton during implementation.
 - If yes, describe at least one change and why you made it.
+  * I replaced the type of Priority used in Task from string to enum because it is easier to read and edit enums than strings if the available values of Priority are all pre-defined constants.
+  * I also added id field to Pet to avoid Pets having the same breed and name.
+  * I added completed field to Task to keep track of whether the Task is completed or not.
+  * I added name field to Scheduler to make it easier to reference each Scheduler.
+  * I added available_time field to Owner to specify the time constaints the Owner has.
 
 ---
 
