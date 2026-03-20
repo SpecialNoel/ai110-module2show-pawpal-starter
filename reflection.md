@@ -65,11 +65,16 @@
     * Implement the Knapsack algorithm in Scheduler for best ordering Tasks with respect to constaints.
     * Implement the calendar logic in Scheduler to support recurring tasks scheduling.
 - What kinds of prompts or questions were most helpful?
+  * Questions that involve design brainstorming were the most helpful ones since it kicks start my thoughts on add more novel logics to the app.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+  * I rejected the suggestion from AI on finding conflicting tasks in a scheduler since it introduced an unspecified field of the Task class: "time". 
+    While I think that it is referring to "duration" of the Task, my logic of handling task conflicts is to comparing the due date only, rather than on overlapping times.
+
 - How did you evaluate or verify what the AI suggested?
+  * I evaluated what the AI suggested by going through the suggestions, trying out potential implementations, and verifying if the suggestions work as expected or not.
 
 ---
 
@@ -82,12 +87,15 @@
   * schedule filtering
   * recurring task scheduling
 - Why were these tests important?
-  * 
+  * These tests are important since there can be edge cases like separating warning messages of task conflicts for both cases: same pet and different pets,
+    for which these issues can affect user experience when using the app.
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+  * From 1 to 5, my confidence level to the scheduler working correctly is about 4.
 - What edge cases would you test next if you had more time?
+  * If I had more time, I would like to test on whether the scheduler handles the case where sorting tasks with different priority and durations of 0 correctly. 
 
 ---
 
@@ -96,11 +104,15 @@
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+  * I'm most satisfied with implementing extension on the original draft of the app (on top of the very basic Owner, Pet, Task and Scheduler). I enjoyed adding more
+    novel functionalities to the app to make it more useful and efficient.
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+  * If I had another iteration, I would redesign the task conflicts handling logic to make it check overlapping time rather than the exact date.
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+  * I learned about designing systems on this project that we should always keep backend logics and frontend UIs isolated and work on each part well before integrating them together to avoid overwhelming complexity at once.
