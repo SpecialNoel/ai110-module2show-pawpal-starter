@@ -2,10 +2,27 @@
 
 ## 1. System Design
 
+### Core actions:
+- User should be able to add/edit/remove/check tasks (walks, feeding, meds, enrichment, grooming, etc.)
+- User should be able to add/edit information about a pet, as well as information about the owner
+- User shoudl be able to request a daily plan that suits the user the best considering constraints and priorities, supported with explanation on why the plan works the best.
+
 **a. Initial design**
 
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
+  * Task:
+    * Attributes: a list of Pet, description about the task, priority flag, duration.
+    * Methods: add/edit/remove a Pet, edit the description, priority flag and duration.
+  * Plan
+    * Attributes: a list of Task, the generated schedule, explanation for this plan.
+    * Methods: add/delete a Task, generate the schedule, generate and edit the explanation.
+  * Owner
+    * Attributes: a list of Pet, information about the owner, a list of Tasks, a list of Plans.
+    * Methods: add/edit/remove a Pet, edit owner info, add/remove a Task, generate/remove a Plan.
+  * Pet
+    * Attributes: information about the pet, name of its owner.
+    * Methods: edit info about the pet, edit info about the name of its owner.
 
 **b. Design changes**
 
