@@ -141,6 +141,12 @@ class Owner:
         if task in self.tasks:
             self.tasks.remove(task)
 
+    def get_all_tasks(self) -> List[Task]:
+        all_tasks = list(self.tasks)
+        for pet in self.pets:
+            all_tasks.extend(pet.tasks)
+        return all_tasks
+
     def generate_scheduler(self, scheduler_name: Optional[str] = None) -> Scheduler:
         p = Scheduler(tasks=list(self.tasks))
         p.generate_schedule()
