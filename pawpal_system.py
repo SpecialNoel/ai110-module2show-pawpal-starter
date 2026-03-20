@@ -142,11 +142,11 @@ class Owner:
     def edit_onwer_email(self, new_email: str) -> None:
         self.email = new_email
 
-    def add_task(self, pet: Pet, task: Task) -> None:
+    def add_task_to_pet(self, pet: Pet, task: Task) -> None:
         if pet in self.pets:
             pet.add_task(task)
 
-    def remove_task(self, pet: Pet, task: Task) -> None:
+    def remove_task_from_pet(self, pet: Pet, task: Task) -> None:
         if pet in self.pets:
             pet.remove_task(task)
 
